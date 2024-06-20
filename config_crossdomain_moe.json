@@ -1,0 +1,206 @@
+{
+    "name": "CrossDomainMoeTrainAndAdapt",
+    "trainer_name": "TrainerCrossDomainMoeWithModelSelection",
+    "n_gpu": 1,
+
+    "text_embedding_size": 1024,
+    "trainable_expert": false,
+    "use_hard_prediction": false,
+    "expert_model_dump_dir": "./saved_crossdomain_models/models/CrossDomainMoeTrainAndAdapt/0530_094458",
+    "expert_model_dump": ["checkpoint-model-A_B.pth", "checkpoint-model-A_C.pth",
+                            "checkpoint-model-A_D.pth", "checkpoint-model-A_E.pth",
+                            "checkpoint-model-A.pth", "checkpoint-model-B_A.pth",
+                            "checkpoint-model-B_C.pth", "checkpoint-model-B_D.pth",
+                            "checkpoint-model-B_E.pth", "checkpoint-model-B.pth",
+                            "checkpoint-model-C_A.pth", "checkpoint-model-C_B.pth",
+                            "checkpoint-model-C_D.pth", "checkpoint-model-C_E.pth",
+                            "checkpoint-model-C.pth", "checkpoint-model-D_A.pth",
+                            "checkpoint-model-D_B.pth", "checkpoint-model-D_C.pth",
+                            "checkpoint-model-D_E.pth", "checkpoint-model-D.pth",
+                            "checkpoint-model-E_A.pth", "checkpoint-model-E_B.pth",
+                            "checkpoint-model-E_C.pth", "checkpoint-model-E_D.pth",
+                            "checkpoint-model-E.pth"],
+    "dataset1_train": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_gossipcop_train_textemb_deberta.parquet"
+        }
+    },
+    "dataset1_train_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 32,
+            "num_workers": 1,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset1_adapt": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_gossipcop_adapt_textemb_deberta.parquet"
+        }
+    },
+    "dataset1_adapt_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 4,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset2_train": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_politifact_train_textemb_deberta.parquet"
+        }
+    },
+    "dataset2_train_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 8,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset2_adapt": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_politifact_adapt_textemb_deberta.parquet"
+        }
+    },
+    "dataset2_adapt_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 4,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset3_train": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_md_train_textemb_deberta.parquet"
+        }
+    },
+
+    "dataset3_train_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 64,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset3_adapt": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_md_adapt_textemb_deberta.parquet"
+        }
+    },
+
+    "dataset3_adapt_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 4,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset4_train": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_coaid_train_textemb_deberta.parquet"
+        }
+    },
+
+    "dataset4_train_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 32,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset4_adapt": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_coaid_adapt_textemb_deberta.parquet"
+        }
+    },
+
+    "dataset4_adapt_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 4,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset5_train": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_liar_train_textemb_deberta.parquet"
+        }
+    },
+
+    "dataset5_train_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 128,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+
+    "dataset5_adapt": {
+        "type": "TextDataset",
+        "args":{
+            "file_path": "dataset/fn_data/dataset_liar_adapt_textemb_deberta.parquet"
+        }
+    },
+
+    "dataset5_adapt_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 4,
+            "num_workers": 0,
+            "shuffle": true,
+            "pin_memory": false
+        }
+    },
+    "loss": {
+        "lambda_l1_gate": 0,
+        "lambda_balancing": 0,
+        "class_weights": [1, 1]
+    },
+
+    "metrics": ["classification_report"],
+    "trainer": {
+        "epochs": 50,
+
+        "save_dir": "saved_crossdomain_models/",
+        "save_period": 1,
+        "verbosity": 2,
+
+        "metric_validation_target" : "min",
+
+        "tensorboard": true
+    }
+}

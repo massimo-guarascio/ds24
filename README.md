@@ -1,3 +1,3 @@
-# MoDA-FND : A Domain Agnostic Deep Fake News Detector based on Deep Mixture of Experts
+# MoDA-FND : A Domain Agnostic Deep Fake News Detector based on Mixture of Experts
 
 MoDA-FND is framework that aims to integrate various domains to offer enhanced predictions for new ones. Specifically, the approach involves learning a distinct model for each domain and refining them through domain-specific adaptation procedures. The predictions of these refined models are hence blended using a Mixture of Experts approach, which allows for selecting the most reliable for predicting the new examples. The proposed approach is fully cross-domain and does not necessitate retraining or fine-tuning when encountering new domains, thus streamlining the adaptation process and ensuring scalability across diverse data landscapes.
